@@ -4,7 +4,7 @@ import utils from './utils.js'
 import controlFilterAndRender from './controlFilterAndRender.js'
 const { request, createPostInit } = api
 const { formatUriListsToArray } = utils
-let { responseArr, filterResAndRender } = controlFilterAndRender
+const { filterResAndRender, resetResponseArr } = controlFilterAndRender
 
 document.querySelector('.submit').addEventListener('click', submitUriLists)
 document.querySelector('.reset').addEventListener('click', resetAllData)
@@ -12,7 +12,7 @@ document.querySelector('.reset').addEventListener('click', resetAllData)
 function resetAllData() {
   document.querySelector('.textarea_itself').value = ''
   document.querySelector('.main').innerHTML = ''
-  window.location.reload()
+  resetResponseArr()
 }
 
 function submitUriLists() {
