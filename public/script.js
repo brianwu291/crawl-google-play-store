@@ -1,5 +1,6 @@
 (function () {
   document.querySelector('.submit').addEventListener('click', submitUriLists)
+  document.querySelector('.reset').addEventListener('click', resetAllData)
 
   let Header = new Headers({ 'Content-Type': 'application/json' })
   let postInit = { method: 'POST', headers: Header, body: {} }
@@ -53,7 +54,6 @@
         return Array.isArray(item) ? item : filterDataWeWant(item, ind)
       })
       renderElement(responseArr)
-      console.log('responseArr', responseArr)
     })
     .catch(err => console.log('err', err))
   }
@@ -107,5 +107,11 @@
       postInit.body = JSON.stringify(formatUriListsToObj(target.value))
       getData(request, postInit)
     }
+  }
+
+  function resetAllData() {
+    responseArr.length = 0
+    document.querySelector('.textarea_itself').value = ''
+    document.querySelector('.main').innerHTML = ''
   }
 })()
