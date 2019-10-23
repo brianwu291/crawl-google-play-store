@@ -1,17 +1,18 @@
 import api from './api.js'
 import fetchData from './fetchData.js'
 import utils from './utils.js'
-import filterResAndRender from './controlFilterAndRender.js'
+import controlFilterAndRender from './controlFilterAndRender.js'
 const { request, createPostInit } = api
 const { formatUriListsToArray } = utils
+let { responseArr, filterResAndRender } = controlFilterAndRender
 
 document.querySelector('.submit').addEventListener('click', submitUriLists)
 document.querySelector('.reset').addEventListener('click', resetAllData)
 
 function resetAllData() {
-  responseArr.length = 0
   document.querySelector('.textarea_itself').value = ''
   document.querySelector('.main').innerHTML = ''
+  window.location.reload()
 }
 
 function submitUriLists() {

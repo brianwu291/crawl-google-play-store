@@ -9,4 +9,4 @@ function filterResAndRender(res) {
   renderElement(responseArr)
 }
 
-export default filterResAndRender
+export default { responseArr, filterResAndRender }
