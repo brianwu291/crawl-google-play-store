@@ -2,9 +2,31 @@ const path = require('path')
 const middleware = require('../middlewares')
 const { getAllAppData } = require('../modules')
 
+function createOption(input = 'js') {
+  const mappingObj = {
+    js: 'application/javascript',
+    html: 'text/html'
+  }
+  return {
+    root: path.join(__dirname, 'public'),
+    headers: {
+      'Access-Control-Allow-Origin': '*/*',
+      'Content-Type': mappingObj[input]
+    }
+  }
+}
+
 module.exports = app => {
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../public', 'index.html'))
+    res.sendFile('index.html', createOption('html'))
+    res.sendFile('api.js', createOption('js'))
+    res.sendFile('fetchData.js', createOption('js'))
+    res.sendFile('utils.js', createOption('js'))
+    res.sendFile('filterData.js', createOption('js'))
+    res.sendFile('createDom.js', createOption('js'))
+    res.sendFile('render.js', createOption('js'))
+    res.sendFile('controlFilterAndRender.js', createOption('js'))
+    res.sendFile('script.js', createOption('js'))
   })
 
   app.post('/app/group', middleware, (req, res) => {
