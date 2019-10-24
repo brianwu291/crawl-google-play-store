@@ -14,7 +14,7 @@ function formatNumToStr(num) {
 }
 
 function formatUriListsToArray(uri = '') {
-  return uri.split('\n')
+  return uri.trim().split('\n')
 }
 
 function replaceTargetWithEmptyStr(target = '', regex) {
