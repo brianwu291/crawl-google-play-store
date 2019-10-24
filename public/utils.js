@@ -21,6 +21,10 @@ function replaceTargetWithEmptyStr(target = '', regex) {
   return target.replace(new RegExp(regex), '')
 }
 
-const result = { get, formatNumToStr, formatUriListsToArray, replaceTargetWithEmptyStr }
+function replaceStrangeWithEmpty(target) {
+  return target.replace(/\*./gm, '')
+}
+
+const result = { get, formatNumToStr, formatUriListsToArray, replaceTargetWithEmptyStr, replaceStrangeWithEmpty }
 
 export default result
