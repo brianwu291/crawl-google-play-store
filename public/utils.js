@@ -17,6 +17,10 @@ function formatUriListsToArray(uri = '') {
   return uri.split('\n')
 }
 
-const result = { get, formatNumToStr, formatUriListsToArray }
+function replaceTargetWithEmptyStr(target = '', regex) {
+  return target.replace(new RegExp(regex), '')
+}
+
+const result = { get, formatNumToStr, formatUriListsToArray, replaceTargetWithEmptyStr }
 
 export default result
