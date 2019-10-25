@@ -3,7 +3,7 @@ import utils from './utils.js'
 const { get, formatNumToStr, replaceTargetWithEmptyStr, replaceStrangeWithEmpty } = utils
 
 function allReplaceWithEmptyStr(target) {
-  return replaceTargetWithEmptyStr(replaceStrangeWithEmpty(target), new RegExp(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]|<br>|●|•|★|〜|O|∩|_|∩|/gm))
+  return replaceTargetWithEmptyStr(replaceStrangeWithEmpty(target), new RegExp(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]|<br>|●|•|★|〜|O|∩|_|-|∩|＊|#|=|/gm))
 }
 
 function filterDataWeWant(input = {}, index = 0) {

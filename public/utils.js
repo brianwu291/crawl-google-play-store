@@ -22,7 +22,7 @@ function replaceTargetWithEmptyStr(target = '', regex) {
 }
 
 function replaceStrangeWithEmpty(target) {
-  return target.replace(/\*./gm, '')
+  return target.replace(/\*/gm, '')
 }
 
 const result = { get, formatNumToStr, formatUriListsToArray, replaceTargetWithEmptyStr, replaceStrangeWithEmpty }
