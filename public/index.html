@@ -43,6 +43,21 @@
     .reset {
       background-color: aquamarine;
     }
+    .download {
+      background-color: burlywood;
+    }
+    .convert_excel {
+      text-decoration: none;
+      color: brown;
+      font-size: 12px;
+      border: 1px solid;
+      border-radius: 6px;
+      box-sizing: border-box;
+      padding: 3px;
+    }
+    .display_none {
+      display: none;
+    }
     @media (max-width: 768px) {
       .textarea_itself, .main {
         max-width: 500px;
@@ -72,6 +87,8 @@
       </div>
       <button class="submit">送出</button>
       <button class="reset">清空</button>
+      <button class="download display_none"">下載</button>
+      <a href="https://json-csv.com/" target="_blank" rel="noopener noreferrer" class="convert_excel display_none">前往 Excel 轉檔</a>
     </section>
   </div>
   <section class="result_section">

@@ -25,6 +25,15 @@ function replaceStrangeWithEmpty(target) {
   return target.replace(/\*/gm, '')
 }
 
-const result = { get, formatNumToStr, formatUriListsToArray, replaceTargetWithEmptyStr, replaceStrangeWithEmpty }
+function convertArrayKeyValToObj(arr = []) {
+  let result = {}
+  arr.forEach(item => {
+    const keyValArr = Object.entries(item)[0]
+    result[keyValArr[0]] = keyValArr[1]
+  })
+  return result
+}
+
+const result = { get, formatNumToStr, formatUriListsToArray, replaceTargetWithEmptyStr, replaceStrangeWithEmpty, convertArrayKeyValToObj }
 
 export default result

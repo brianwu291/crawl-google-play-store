@@ -46,10 +46,17 @@ function submitUriLists() {
       }
     }
   }
-  if (userInput.length >= 10) {
-    return progressiveFetchAndRender()
-  }
+  // if (userInput.length >= 10) {
+  //   return progressiveFetchAndRender()
+  // }
   fetchData(request, createPostInit(userInput))
+  .then(res => {
+    if (res.message === 'succeed') {
+      document.querySelector('.download').classList.remove('display_none')
+      document.querySelector('.convert_excel').classList.remove('display_none')
+    }
+    return res
+  })
   .then(filterResAndRender)
   .catch(err => console.log('err', err))
 }
