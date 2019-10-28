@@ -29,6 +29,9 @@ function convertArrayKeyValToObj(arr = []) {
   let result = {}
   arr.forEach(item => {
     const keyValArr = Object.entries(item)[0]
+    if (typeof keyValArr[1] === 'string') {
+      return result[keyValArr[0]] = keyValArr[1].replace(/(?:\\[rn]|[\r\n])/g, '')
+    }
     result[keyValArr[0]] = keyValArr[1]
   })
   return result
