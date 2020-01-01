@@ -22,33 +22,6 @@ function submitUriLists() {
     alert('input must have value')
     return
   }
-  function delayFetchAndRender(inputReq, inputInit, sec) {
-    window.setTimeout(() => {
-      fetchData(inputReq, inputInit)
-      .then(filterResAndRender)
-      .catch(err => console.log('err', err))
-    }, 700 * sec)
-  }
-  function progressiveFetchAndRender() {
-    let newReqData = []
-    for (let i = 0; i < userInput.length; i += 1) {
-      if (newReqData.length === 5) {
-        delayFetchAndRender(request, createPostInit(newReqData), Math.floor((i + 1) / 5))
-        newReqData = []
-        newReqData.push(userInput[i])
-      } else {
-        newReqData.push(userInput[i])
-        if (i === userInput.length - 1 && newReqData.length > 0) {
-          fetchData(request, createPostInit(newReqData))
-          .then(filterResAndRender)
-          .catch(err => console.log('err', err))
-        }
-      }
-    }
-  }
-  // if (userInput.length >= 10) {
-  //   return progressiveFetchAndRender()
-  // }
   fetchData(request, createPostInit(userInput))
   .then(res => {
     if (res.message === 'succeed') {

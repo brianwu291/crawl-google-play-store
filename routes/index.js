@@ -19,16 +19,7 @@ function createOption(input = 'js') {
 module.exports = app => {
   app.get('*', (req, res) => {
     res.sendFile('index.html', createOption('html'))
-    res.sendFile('api.js', createOption('js'))
-    res.sendFile('fetchData.js', createOption('js'))
-    res.sendFile('utils.js', createOption('js'))
-    res.sendFile('filterData.js', createOption('js'))
-    res.sendFile('createDom.js', createOption('js'))
-    res.sendFile('render.js', createOption('js'))
-    res.sendFile('controlFilterAndRender.js', createOption('js'))
-    res.sendFile('script.js', createOption('js'))
   })
-
   app.post('/app/group', middleware, (req, res) => {
     const reqData = req.body.data
     if (reqData.length === 0) {
@@ -44,8 +35,30 @@ module.exports = app => {
       res.set('Content-Type', 'application/json')
       return res.status(403).send({ data: null, message: `bad request because ${error}` })
     }
-    
-    getAllAppData(req.body.data)
+    async function splitRequestToMultipleTimes() {
+      const urlLists = req.body.data, result = []
+      if (urlLists.length <= 5) return getAllAppData(urlLists)
+      let divideUrlGroups = [], tempArray = []
+      for (let i = 0; i < urlLists.length; i += 1) {
+        if (tempArray.length < 5) {
+          tempArray.push(urlLists[i])
+          if (i === urlLists.length - 1) {
+            divideUrlGroups.push(tempArray)
+            tempArray = []
+          }
+        }
+        if (tempArray.length === 5) {
+          divideUrlGroups.push(tempArray)
+          tempArray = [] 
+        }
+      }
+      for (const item of divideUrlGroups) {
+        const res = await getAllAppData(item)
+        result.push(...res)
+      }
+      return result
+    }
+    splitRequestToMultipleTimes()
     .then(handleHasResponse)
     .catch(handleHasError)
   })
