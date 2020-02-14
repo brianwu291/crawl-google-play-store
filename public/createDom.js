@@ -1,5 +1,4 @@
 function createPTagElement(appDataItem = {}) {
-  console.log(appDataItem)
   let result = document.createElement('p')
   let key = Object.keys(appDataItem)[0]
   result.textContent = Array.isArray(appDataItem[key]) ?
