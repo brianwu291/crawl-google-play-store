@@ -16,10 +16,15 @@ function parseUriArrayToAppIdArray(inputUri = []) {
 
 function getAllAppData(target = []) {
   return target.length === 0 ? [] :
-    Promise.all(parseUriArrayToAppIdArray(target).map(appId => (
-      getAppDetail(appId)
-      .then(res => res))
-      .catch(err => err)
+    Promise.all(parseUriArrayToAppIdArray(target).map(appId => {
+      return getAppDetail(appId)
+        .then(res => {
+          return res
+        })
+        .catch(err => {
+          return err
+        })
+      }
     ))
     .then(res => res)
     .catch(err => err)

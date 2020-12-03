@@ -9,17 +9,11 @@ function createOption(input = 'js') {
   }
   return {
     root: path.join(__dirname, 'public'),
-    headers: {
-      'Access-Control-Allow-Origin': '*/*',
-      'Content-Type': mappingObj[input]
-    }
+    headers: { 'Content-Type': mappingObj[input] }
   }
 }
 
 module.exports = app => {
-  app.get('*', (req, res) => {
-    res.sendFile('index.html', createOption('html'))
-  })
   app.post('/app/group', middleware, (req, res) => {
     const reqData = req.body.data
     if (reqData.length === 0) {
