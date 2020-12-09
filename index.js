@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const path = require('path');
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(express.static('public', {
@@ -25,7 +26,7 @@ function createOption(input = 'js') {
 app.get('*', (req, res) => {
   res.sendFile('index.html', createOption('html'))
 })
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log('Listening at ' + `http://localhost:${PORT}`)
 })
